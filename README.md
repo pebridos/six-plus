@@ -15,3 +15,6 @@ deactivate
 
 To know what the source list in your python virtual env
 pip list
+
+Running With Hot Run
+flask --app app.py --debug run
