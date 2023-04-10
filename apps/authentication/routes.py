@@ -3,6 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+from ast import dump
 from flask import render_template, redirect, request, url_for
 from flask_login import (
     current_user,
@@ -35,8 +36,8 @@ def login():
         password = request.form['password']
 
         # Locate user
-        user = Users.query.filter_by(username=username).first()
-
+        type(username)
+        user = Users.query.filter_by(username=username).scalar()
         # Check the password
         if user and verify_pass(password, user.password):
 
@@ -60,7 +61,7 @@ def register():
     if 'register' in request.form:
 
         username = request.form['username']
-        email = request.form['email']
+        email    = request.form['email']
 
         # Check usename exists
         user = Users.query.filter_by(username=username).first()
