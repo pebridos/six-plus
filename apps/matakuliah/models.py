@@ -9,14 +9,17 @@ from apps import db, login_manager
 
 from apps.authentication.util import hash_pass
 
-class Users(db.Model, UserMixin):
+class MataKuliah(db.Model, UserMixin):
 
-    __tablename__ = 'Users'
+    __tablename__ = 'matakuliah'
 
-    id       = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True)
-    email    = db.Column(db.String(64), unique=True)
-    password = db.Column(db.LargeBinary)
+    id     = db.Column(db.Integer, primary_key=True)
+    kode_matakuliah   = db.Column(db.String(255))
+    nama_matakuliah   = db.Column(db.String(255))
+    tahun_kurikulum   = db.Column(db.Integer)
+    sks               = db.Column(db.Integer)
+    no_programstudi   = db.Column(db.String(50))
+    nama_programstudi = db.Column(db.String(255))
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
@@ -37,12 +40,12 @@ class Users(db.Model, UserMixin):
 
 
 @login_manager.user_loader
-def user_loader(id):
-    return Users.query.filter_by(id=id).first()
+def matakuliah_loader(id):
+    return MataKuliah.query.filter_by(id=id).first()
 
 
 @login_manager.request_loader
 def request_loader(request):
     username = request.form.get('username')
-    user = Users.query.filter_by(username=username).first()
+    user = MataKuliah.query.filter_by(username=username).first()
     return user if user else None

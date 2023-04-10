@@ -1,31 +1,10 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField
-from wtforms.validators import Email, DataRequired
+from wtforms import StringField, IntegerField, validators
 
-# login and registration
-
-
-class LoginForm(FlaskForm):
-    username = TextField('Username',
-                         id='username_login',
-                         validators=[DataRequired()])
-    password = PasswordField('Password',
-                             id='pwd_login',
-                             validators=[DataRequired()])
-
-
-class CreateAccountForm(FlaskForm):
-    username = TextField('Username',
-                         id='username_create',
-                         validators=[DataRequired()])
-    email = TextField('Email',
-                      id='email_create',
-                      validators=[DataRequired(), Email()])
-    password = PasswordField('Password',
-                             id='pwd_create',
-                             validators=[DataRequired()])
+class MatakuliahForm(FlaskForm):
+    kode_matakuliah   = StringField('Kode Matakuliah', validators=[validators.DataRequired(), validators.Length(max=255)])
+    nama_matakuliah   = StringField('Nama Matakuliah', validators=[validators.DataRequired(), validators.Length(max=255)])
+    tahun_kurikulum   = IntegerField('Tahun Kurikulum', validators=[validators.DataRequired()])
+    sks               = IntegerField('SKS', validators=[validators.DataRequired()])
+    no_programstudi   = StringField('No. Program Studi', validators=[validators.DataRequired(), validators.Length(max=50)])
+    nama_programstudi = StringField('Nama Program Studi', validators=[validators.DataRequired(), validators.Length(max=255)])
