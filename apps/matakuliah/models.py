@@ -3,17 +3,13 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from flask_login import UserMixin
+from apps import db
 
-from apps import db, login_manager
-
-from apps.authentication.util import hash_pass
-
-class MataKuliah(db.Model, UserMixin):
+class MataKuliah(db.Model):
 
     __tablename__ = 'matakuliah'
 
-    id     = db.Column(db.Integer, primary_key=True)
+    id                = db.Column(db.Integer, primary_key=True)
     kode_matakuliah   = db.Column(db.String(255))
     nama_matakuliah   = db.Column(db.String(255))
     tahun_kurikulum   = db.Column(db.Integer)
@@ -21,31 +17,33 @@ class MataKuliah(db.Model, UserMixin):
     no_programstudi   = db.Column(db.String(50))
     nama_programstudi = db.Column(db.String(255))
 
-    def __init__(self, **kwargs):
-        for property, value in kwargs.items():
-            # depending on whether value is an iterable or not, we must
-            # unpack it's value (when **kwargs is request.form, some values
-            # will be a 1-element list)
-            if hasattr(value, '__iter__') and not isinstance(value, str):
-                # the ,= unpack of a singleton fails PEP8 (travis flake8 test)
-                value = value[0]
 
-            if property == 'password':
-                value = hash_pass(value)  # we need bytes here (not plain str)
+class DosenPengajar(db.Model):
 
-            setattr(self, property, value)
+    __tablename__ = 'dosenpengajar'
 
-    def __repr__(self):
-        return str(self.username)
+    id                = db.Column(db.Integer, primary_key=True)
+    id_pembukaankelas = db.Column(db.Integer)
+    id_dosen          = db.Column(db.Integer)
 
+class Dosen(db.Model):
 
-@login_manager.user_loader
-def matakuliah_loader(id):
-    return MataKuliah.query.filter_by(id=id).first()
+    __tablename__ = 'dosen'
 
+    id             = db.Column(db.Integer, primary_key=True)
+    no_induk_dosen = db.Column(db.String(50))
+    nama_dosen     = db.Column(db.String(255))
+    
 
-@login_manager.request_loader
-def request_loader(request):
-    username = request.form.get('username')
-    user = MataKuliah.query.filter_by(username=username).first()
-    return user if user else None
+class PembukaanKelas(db.Model):
+
+    __tablename__ = 'pembukaankelas'
+
+    id                = db.Column(db.Integer, primary_key=True)
+    kode_matakuliah   = db.Column(db.String(255))
+    no_kelas          = db.Column(db.String(255))
+    tahun_pengambilan = db.Column(db.Integer)
+    semester          = db.Column(db.Integer)
+    sifat             = db.Column(db.String(10))
+
+    
