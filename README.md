@@ -1,6 +1,6 @@
 RUNNING THIS APPS WITH THIS COMMAND:
 virtualenv env
-\env\Scripts\activate
+.\env\Scripts\activate
 set FLASK_APP=run.py
 set FLASK_ENV=development
 

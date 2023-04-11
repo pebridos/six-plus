@@ -21,7 +21,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-white {% if 'tables-data' in segment %} active bg-gradient-info {% endif %}" 
-             href="/tables-data.html">
+             href="{{ url_for('matakuliah_blueprint.matakuliah_list') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -30,7 +30,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-white {% if 'alternatives' in segment %} active bg-gradient-info {% endif %}" 
-             href="/alternatives.html">
+             href="{{ url_for('matakuliah_blueprint.alternatives_list') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
