@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Tables {% endblock %} 
+{% block title %} Alternative {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -46,9 +46,8 @@
                       {{alternative.no_programstudi}}-{{alternative.nama_programstudi}}
                     </td>
                     <td class="align-middle text-center">
-                      
                     <div class="d-flex px-2 py-1">
-                      <div class="d-flex flex-column justify-content-center">
+                      <div class="d-flex flex-column justify-content-left">
                     {% set nids = alternative.nid.split(',') %}
                     {% set dosens = alternative.dosen.split(',') %}
                     {% for i in range(nids|length) %}
@@ -57,11 +56,6 @@
                   </div>
                 </div>
                   </td>
-                    <td class="align-middle">
-                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                        Edit
-                      </a>
-                    </td>
                   </tr>
                   {% endfor %}
                 </tbody>
