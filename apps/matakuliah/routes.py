@@ -87,7 +87,6 @@ def matakuliah_kurikulum_list():
 
 @blueprint.route('/list-alternatives', methods=['GET'])
 def alternatives_list():
-    # matakuliah_list = query = session.query(
     query = db.session.query(
         MataKuliah.kode_matakuliah,
         MataKuliah.nama_matakuliah,

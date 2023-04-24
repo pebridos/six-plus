@@ -2,7 +2,6 @@
 
 {% block title %} Alternative {% endblock %} 
 
-<!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
@@ -10,14 +9,81 @@
   <div class="container-fluid py-4">
     <div class="row">
       <div class="col-12">
-        <div class="card my-4">
-          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-            <div class="bg-gradient-info shadow-primary border-radius-lg pt-4 pb-3">
-              <h6 class="text-white text-capitalize ps-3">Alternatif Alokasi Dosen</h6>
+        <div class="card-header p-0 position-relative mt-n4 mx-1 z-index-2">
+          <div class="bg-gradient-info shadow-primary border-radius-lg pt-3 pb-2">
+            <h6 class="text-white text-capitalize ps-3">Alternatif Alokasi Dosen</h6>               
+          </div>
+        </div>
+        <div class="card p-0 position-relative mx-3 z-index-2">
+          <div class="shadow-primary border-radius-lg pt-3 pb-1">
+            <h6 class="text-blue text-capitalize ps-3">Kriteria Alokasi</h6>
+            <div class="p-4">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-static mb-4">
+                      <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Pertimbangan Mata Kuliah Pilihan</strong></label>
+                      <select class="form-control" id="exampleFormControlSelect1" style="color: SteelBlue;"> 
+                        <option disabled selected>Pilihan Pertimbangan</option>
+                        <option style="color: black">Mata Kuliah Historis</option>
+                        <option style="color: black">Mata Kuliah Minat</option>
+                        <option style="color: black">Mata Kuliah Minat dan Mata Kuliah Historis</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-static mb-4">
+                      <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Jumlah Mata Kuliah Pilihan</strong></label>
+                      <select class="form-control" id="exampleFormControlSelect1" style="color: SteelBlue;"> 
+                        <option disabled selected>Jumlah Mata Kuliah</option>
+                        <option style="color: black">1</option>
+                        <option style="color: black">2</option>
+                        <option style="color: black">3</option>
+                        <option style="color: black">4</option>
+                        <option style="color: black">5</option>
+                        <option style="color: black">6</option>
+                        <option style="color: black">7</option>
+                        <option style="color: black">8</option>
+                        <option style="color: black">9</option>
+                        <option style="color: black">10</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-static mb-4">
+                      <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Periode Pertimbangan Dosen Mata Kuliah Historis</strong></label>
+                      <select class="form-control" id="exampleFormControlSelect1" style="color: SteelBlue;"> 
+                        <option disabled selected>Periode Tahun Pertimbangan Dosen</option>
+                        <option style="color: black">5 tahun hingga 10 tahun lalu</option>
+                        <option style="color: black">3 tahun hingga 5 tahun lalu</option>
+                        <option style="color: black">3 tahun lalu</option>
+                        <option style="color: black">2 tahun lalu</option>
+                        <option style="color: black">1 tahun lalu</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-static mb-4">
+                      <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Kriteria Pertimbangan Alokasi Dosen</strong></label>
+                      <select class="form-control" id="exampleFormControlSelect1" style="color: SteelBlue;"> 
+                        <option disabled selected>Pilihan Kriteria Pertimbangan Dosen</option>
+                        <option style="color: black">Hubungan Mata Kuliah dan Kelompok Keilmuan Dosen</option>
+                        <option style="color: black">Kemiripan Mata Kuliah</option>
+                        <option style="color: black">Dosen Historis</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <button type="button" class="btn bg-gradient-success mt-n0 ml-auto" onclick="showTable()">Generate</button>
             </div>
           </div>
+        </div>
+        <div class="card my-4">
           <div class="card-body px-0 pb-2">
-            <div class="table-responsive p-0">
+            <div class="table-responsive p-0" style="display: none;">
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
@@ -102,4 +168,11 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script>
+  function showTable() {
+    document.querySelector(".table-responsive").style.display = "block";
+  }
+</script>  
+{% endblock javascripts %}
+
