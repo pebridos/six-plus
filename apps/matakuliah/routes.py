@@ -37,9 +37,10 @@ def create_matakuliah():
 
     return render_template('create_matakuliah.html', form=form)
 
-@blueprint.route('/list', methods=['GET'])
+@blueprint.route('/list', methods=['GET', 'POST'])
 def matakuliah_list():
-    # matakuliah_list = query = session.query(
+    if request.method == 'POST':
+        print ("Successfuly Upload")
     query = db.session.query(
         MataKuliah.kode_matakuliah,
         MataKuliah.nama_matakuliah,
@@ -68,11 +69,12 @@ def matakuliah_list():
     ).order_by(
         PembukaanKelas.tahun_pengambilan,
         MataKuliah.nama_programstudi.asc()
-    ).limit(100)
+    ).limit(9)
 
     matakuliah_list = query.all()
+    
     # Execute the query and print the results
-    matkulkurikulum_list = MataKuliah.query.limit(20).all()
+    matkulkurikulum_list = MataKuliah.query.limit(9).all()
 
     return render_template('home/tables-data.html', matakuliah_list=matakuliah_list, matkulkurikulum_list=matkulkurikulum_list, segment='tables-data')
 
