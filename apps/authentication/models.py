@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 """
-Copyright (c) 2019 - present AppSeed.us
+Copyright (c) 2023 - present Kelompok 7
 """
 
 from flask_login import UserMixin
@@ -38,7 +38,6 @@ class Users(db.Model, UserMixin):
 
 @login_manager.user_loader
 def user_loader(id):
-    print(id)
     return Users.query.filter_by(id=id).first()
 
 
