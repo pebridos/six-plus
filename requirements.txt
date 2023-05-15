@@ -11,4 +11,9 @@ gunicorn==20.1.0
 jinja2==3.0.1
 flask-restx==0.5.1
 flask-paginate==2022.1.8
+fuzzywuzzy==0.18.0
+pandas==2.0.1
+matplotlib==3.7.1
+scikit-learn==1.2.2
+Flask-MySQLdb==1.0.1
 
