@@ -103,12 +103,12 @@ def matakuliah_list():
     ).order_by(
         PembukaanKelas.tahun_pengambilan,
         MataKuliah.nama_programstudi.asc()
-    ).limit(9)
+    ).limit(50)
 
     matakuliah_list = query.all()
 
     # Execute the query and print the results
-    matkulkurikulum_list = MataKuliahKurikulum.query.limit(9).all()
+    matkulkurikulum_list = MataKuliahKurikulum.query.limit(50).all()
 
     matkulminat_list = db.session.query(
             MataKuliah.kode_matakuliah,
@@ -119,7 +119,7 @@ def matakuliah_list():
             MataKuliah.tahun_kurikulum
         ).join(
         MataKuliah, MinatData.kd_matakuliah==MataKuliah.kode_matakuliah
-        ).limit(9).all()
+        ).limit(50).all()
 
     return render_template(
             'home/tables-data.html',

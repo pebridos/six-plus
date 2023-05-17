@@ -131,7 +131,7 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Program Studi
                     Penyelenggara</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SKS</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dosen
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Dosen
                     Pengajar</th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
@@ -160,10 +160,9 @@
                   </td>
                   <td class="align-middle text-center">
                     {% set nids = matakuliah.nid.split(',') %}
-                    {% set dosens = matakuliah.dosen.split(',') %}
                     {% for i in range(nids|length) %}
                     <div class="d-flex align-items-center justify-content-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{i+1}}. {{nids[i] }} - {{dosens[i] }}</span>
+                      <span class="text-secondary text-xs font-weight-bold">{{i+1}}. {{nids[i] }}</span>
                     </div>
                     {% endfor %}
                   </td>
@@ -226,11 +225,10 @@
           <div class="bg-gradient-info shadow-primary border-radius-lg pt-4 pb-3">
             <h6 class="text-white text-capitalize ps-3">Mata Kuliah Minat</h6>
             <!-- Button trigger modal -->
-            <button type="button" class="btn bg-gradient-success mt-n0 mx-3" data-bs-toggle="modal"
-              data-bs-target="#matkulkurikulumModal">
+            <!-- <button type="button" class="btn bg-gradient-success mt-n0 mx-3" data-bs-toggle="modal">
               <span class="btn-inner--icon"><i class="material-icons">add_circle</i></span>
               <span class="btn-inner--text">Generate</span>
-            </button>
+            </button> -->
           </div>
         </div>
         <div class="card-body px-0 pb-2">

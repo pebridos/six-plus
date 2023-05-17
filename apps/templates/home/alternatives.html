@@ -18,13 +18,15 @@
         <div class="shadow-primary border-radius-lg pt-3 pb-1">
           <h6 class="text-blue text-capitalize ps-3">Kriteria Alokasi</h6>
           <div class="p-4">
-            <form action="{{ url_for('alternatif_blueprint.alternatives_data') }}" method="POST"  enctype="multipart/form-data">
+            <form action="{{ url_for('alternatif_blueprint.alternatives_data') }}" method="POST"
+              enctype="multipart/form-data">
               <div class="row">
                 <div class="col-md-6">
                   <div class="input-group input-group-static mb-4">
                     <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Pertimbangan
                         Mata Kuliah Pilihan</strong></label>
-                    <select class="form-control" id="formMatkulpilihan" style="color: SteelBlue;" required name="matkulPilihan">
+                    <select class="form-control" id="formMatkulpilihan" style="color: SteelBlue;" required
+                      name="matkulPilihan">
                       <option disabled selected>Pilihan Pertimbangan</option>
                       <option style="color: black" value="Mata Kuliah Historis">Mata Kuliah Historis</option>
                       <option style="color: black" value="Mata Kuliah Minat">Mata Kuliah Minat</option>
@@ -36,7 +38,8 @@
                   <div class="input-group input-group-static mb-4">
                     <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Jumlah Mata
                         Kuliah Pilihan</strong></label>
-                    <select class="form-control" id="formJumlahmatkul" style="color: SteelBlue;" required name="jumlahMatkul">
+                    <select class="form-control" id="formJumlahmatkul" style="color: SteelBlue;" required
+                      name="jumlahMatkul">
                       <option disabled selected>Jumlah Mata Kuliah</option>
                       <option style="color: black" value="1">1</option>
                       <option style="color: black" value="2">2</option>
@@ -57,26 +60,35 @@
                   <div class="input-group input-group-static mb-4">
                     <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Periode
                         Pertimbangan Dosen Mata Kuliah Historis</strong></label>
-                        <select class="form-control" id="formTahun" style="color: SteelBlue;" required name="tahunKurikulum">
-                          <option disabled selected>Periode Tahun Pertimbangan Dosen</option>
-                          {% for year in range(2013, 2021) %}
-                            <option style="color: black" value="{{ year }}">{{ year }}</option>
-                          {% endfor %}
-                        </select>
+                    <select class="form-control" id="formTahun" style="color: SteelBlue;" required
+                      name="tahunKurikulum">
+                      <option disabled selected>Periode Tahun Pertimbangan Dosen</option>
+                      {% for year in range(2013, 2021) %}
+                      <option style="color: black" value="{{ year }}">{{ year }}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-group input-group-static mb-4">
-                    <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Data Program Studi</strong></label>
-                        <select class="form-control" id="formProgramStudi" style="color: SteelBlue;" required name="programStudi">
-                          <option disabled selected>Program Studi</option>
-                            <option style="color: black" value="135">Teknik Informatika</option>
-                            <option style="color: black" value="182">Sistem dan Teknologi Informasi</option>
-                        </select>
+                    <label for="exampleFormControlSelect1" class="ms-0" style="color: MidnightBlue"><strong>Data Program
+                        Studi</strong></label>
+                    <select class="form-control" id="formProgramStudi" style="color: SteelBlue;" required
+                      name="programStudi">
+                      <option disabled selected>Program Studi</option>
+                      <option style="color: black" value="135">Teknik Informatika</option>
+                      <option style="color: black" value="182">Sistem dan Teknologi Informasi</option>
+                    </select>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn bg-gradient-success mt-n0 ml-auto" id="submit-btn" disabled>Generate</button>
+              <button type="submit" class="btn bg-gradient-success mt-n0 ml-auto" id="submit-btn"
+                disabled>Generate</button>
+              <!-- <button type="button" class="btn bg-gradient-danger mt-n0 ml-auto" id="export-btn" data-bs-toggle="modal"
+              data-bs-target="#exportResultModal" >
+                <span class="btn-inner--icon"><i class="material-icons">start</i></span>
+                <span class="btn-inner--text">Export Result</span>
+              </button> -->
             </form>
           </div>
         </div>
@@ -135,6 +147,40 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="exportResultModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabelExportResult" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Export Result</h5>
+          <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <select class="form-control" id="formProgramStudi" style="color: SteelBlue;" required name="programStudi">
+              <option disabled selected>Choose format export</option>
+              <option style="color: black" value="135">Excel</option>
+              <option style="color: black" value="182">Csv</option>
+              <option style="color: black" value="182">Pdf</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">
+              <span class="btn-inner--icon"><i class="material-icons">close</i></span>
+              <span class="btn-inner--text">Cancel</span>
+            </button>
+            <button type="submit" class="btn bg-gradient-success">
+              <span class="btn-inner--icon"><i class="material-icons">done</i></span>
+              <span class="btn-inner--text">Export</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <footer class="footer py-4  ">
     <div class="container-fluid">
       <div class="row align-items-center justify-content-lg-between">
@@ -159,21 +205,21 @@
   <script>
 
     // Get the required form elements
-  const matkulPilihan  = document.getElementById('formMatkulpilihan');
-  const jumlahMatkul   = document.getElementById('formJumlahmatkul');
-  const tahunKurikulum = document.getElementById('formTahun');
-  const programStudi   = document.getElementById('formProgramStudi');
-  const submitBtn      = document.getElementById('submit-btn');
+    const matkulPilihan = document.getElementById('formMatkulpilihan');
+    const jumlahMatkul = document.getElementById('formJumlahmatkul');
+    const tahunKurikulum = document.getElementById('formTahun');
+    const programStudi = document.getElementById('formProgramStudi');
+    const submitBtn = document.getElementById('submit-btn');
 
-  // Add an event listener to the form
-  const form = document.querySelector('form');
-  form.addEventListener('input', function() {
-    // Check if all the required fields are filled
-    if (matkulPilihan.value && jumlahMatkul.value && tahunKurikulum.value && programStudi.value) {
-      submitBtn.removeAttribute('disabled'); // enable the submit button
-    } else {
-      submitBtn.setAttribute('disabled', ''); // disable the submit button
-    }
-  });
+    // Add an event listener to the form
+    const form = document.querySelector('form');
+    form.addEventListener('input', function () {
+      // Check if all the required fields are filled
+      if (matkulPilihan.value && jumlahMatkul.value && tahunKurikulum.value && programStudi.value) {
+        submitBtn.removeAttribute('disabled'); // enable the submit button
+      } else {
+        submitBtn.setAttribute('disabled', ''); // disable the submit button
+      }
+    });
   </script>
   {% endblock javascripts %}
