@@ -1,0 +1,382 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables Data {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-info shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Mata Kuliah Kurikulum</h6>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-success mt-n0 mx-3" data-bs-toggle="modal"
+              data-bs-target="#matkulkurikulumModal">
+              <span class="btn-inner--icon"><i class="material-icons">add_circle</i></span>
+              <span class="btn-inner--text">Upload</span>
+            </button>
+            <button type="button" class="btn bg-gradient-danger mt-n0 mx-3" data-bs-toggle="modal"
+              data-bs-target="#clearmatkulKurikulumModal">
+              <span class="btn-inner--icon"><i class="material-icons">delete</i></span>
+              <span class="btn-inner--text">Clear Data</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mata Kuliah</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tahun Kurikulum
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SKS</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Program
+                    Studi</th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for matakuliah_kurikulum in matkulkurikulum_list %}
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{matakuliah_kurikulum.nama_matakuliah}}</h6>
+                        <p class="text-xs text-secondary mb-0">{{matakuliah_kurikulum.kode_matakuliah}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{matakuliah_kurikulum.tahun_kurikulum}}</p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    {{matakuliah_kurikulum.sks}}
+                  </td>
+                  <td class="align-middle text-center">
+                    <span
+                      class="text-secondary text-xs font-weight-bold">{{matakuliah_kurikulum.no_programstudi}}-{{matakuliah_kurikulum.nama_programstudi}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                      data-original-title="Edit user">
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-info">
+        <li class="page-item">
+          <a class="page-link" href="#link" aria-label="Previous">
+            <span aria-hidden="true">
+              <span class="material-icons">
+                keyboard_arrow_left
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">1</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#link">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">4</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">5</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link" aria-label="Next">
+            <span aria-hidden="true">
+              <span class="material-icons">
+                keyboard_arrow_right
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-info shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Mata Kuliah Historis</h6>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mata Kuliah</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Program Studi
+                    Penyelenggara</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SKS</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Dosen
+                    Pengajar</th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for matakuliah in matakuliah_list %}
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{matakuliah.nama_matakuliah}}</h6>
+                        <p class="text-xs text-secondary mb-0">{{matakuliah.kode_matakuliah}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{matakuliah.nama_programstudi}}</h6>
+                        <p class="text-xs text-secondary mb-0">{{matakuliah.no_programstudi}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    {{matakuliah.sks}}
+                  </td>
+                  <td class="align-middle text-center">
+                    {% set nids = matakuliah.nid.split(',') %}
+                    {% for i in range(nids|length) %}
+                    <div class="d-flex align-items-center justify-content-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{i+1}}. {{nids[i] }}</span>
+                    </div>
+                    {% endfor %}
+                  </td>
+                  <td class="align-middle">
+                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                      data-original-title="Edit user">
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-info">
+        <li class="page-item">
+          <a class="page-link" href="#link" aria-label="Previous">
+            <span aria-hidden="true">
+              <span class="material-icons">
+                keyboard_arrow_left
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">1</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#link">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">4</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">5</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link" aria-label="Next">
+            <span aria-hidden="true">
+              <span class="material-icons">
+                keyboard_arrow_right
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-info shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Mata Kuliah Minat</h6>
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn bg-gradient-success mt-n0 mx-3" data-bs-toggle="modal">
+              <span class="btn-inner--icon"><i class="material-icons">add_circle</i></span>
+              <span class="btn-inner--text">Generate</span>
+            </button> -->
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mata Kuliah</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tahun Kurikulum
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sifat</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Program
+                    Studi</th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for matkul_minat in matkulminat_list %}
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{matkul_minat.nama_matakuliah}}</h6>
+                        <p class="text-xs text-secondary mb-0">{{matkul_minat.kode_matakuliah}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{matkul_minat.tahun_kurikulum}}</p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    {{matkul_minat.sifat}}
+                  </td>
+                  <td class="align-middle text-center">
+                    <span
+                      class="text-secondary text-xs font-weight-bold">{{matkul_minat.no_programstudi}}-{{matkul_minat.nama_programstudi}}</span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-info">
+        <li class="page-item">
+          <a class="page-link" href="#link" aria-label="Previous">
+            <span aria-hidden="true">
+              <span class="material-icons">
+                keyboard_arrow_left
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">1</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#link">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">4</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link">5</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#link" aria-label="Next">
+            <span aria-hidden="true">
+              <span class="material-icons">
+                keyboard_arrow_right
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="matkulkurikulumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Upload Mata Kuliah Kurikulum</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ url_for('matakuliah_blueprint.matakuliah_list') }}" method="POST" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Upload file with <a
+                href="/static/example_file_kurikulum.csv"><b>THIS</b></a> format</label>
+            <input type="file" class="form-control-file" name='file' id="exampleFormControlFile1" accept=".csv">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">
+            <span class="btn-inner--icon"><i class="material-icons">close</i></span>
+            <span class="btn-inner--text">Close</span>
+          </button>
+          <button type="submit" class="btn bg-gradient-success">
+            <span class="btn-inner--icon"><i class="material-icons">save_as</i></span>
+            <span class="btn-inner--text">Upload</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="clearmatkulKurikulumModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabelClearKurikulum" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Clear Data</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ url_for('matakuliah_blueprint.matakuliah_list') }}" method="DELETE" enctype="multipart/form-data">
+      <div class="modal-body">
+        Apakah anda yakin untuk menghapus Mata Kuliah Kurikulum?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">
+          <span class="btn-inner--icon"><i class="material-icons">close</i></span>
+          <span class="btn-inner--text">No</span>
+        </button>
+        <button type="submit" class="btn bg-gradient-success">
+          <span class="btn-inner--icon"><i class="material-icons">done</i></span>
+          <span class="btn-inner--text">Yes</span>
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

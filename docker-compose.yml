@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  sixplus-app:
+    container_name: sixplus
+    restart: always
+    env_file: .env
+    build: .
+    networks:
+      - db_network
+      - web_network
+
+  nginx:
+    container_name: nginx
+    restart: always
+    image: "nginx:latest"
+    ports:
+      - "85:85"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - web_network
+    depends_on: 
+      - sixplus-app
+
+  mysql-sixplus:
+    image: mysql:8.0.31-oracle
+    container_name: "mysql-sixplus"
+    restart: "no"
+    ports:
+      - 3310:3306
+    volumes:
+      - ./sixplusdb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Passw0rd
+      - MYSQL_USER=admin
+      - MYSQL_DATABASE=sixplus
+      - MYSQL_PASSWORD=Passw0rd
+    networks:
+      - web_network
+      - db_network
+
+networks:
+  db_network:
+    driver: bridge
+  web_network:
+    driver: bridge
+ 
